@@ -57,7 +57,7 @@ class plgContentITPGoogleAdSense extends JPlugin {
      */
     public function onContentPrepare($context, &$article, &$params, $limitstart){
         
-        if (!$article OR !isset($this->params)) { return; };            
+        if (!$article OR empty($article->id) OR !isset($this->params)) { return; };            
         
         $app =& JFactory::getApplication();
         /** @var $app JApplication **/
@@ -191,7 +191,6 @@ class plgContentITPGoogleAdSense extends JPlugin {
         }
         
         /* Let's show the ad */
-        $css            = $this->params->get('css');
         $publisherId    = $this->params->get('publisherId');
         $slotId         = $this->params->get('slot');
         $channelId      = $this->params->get('channel');
@@ -204,7 +203,7 @@ class plgContentITPGoogleAdSense extends JPlugin {
         
         $jmAdCss    = $this->params->get('joomlaspan_ad_css');
         
-        return  '<div class="' . $css . '"><script type="text/javascript"><!--
+        return  '<div><script type="text/javascript"><!--
 google_ad_client = "' . $publisherId . '";
 google_ad_slot = "' . $slotId . '";
 google_ad_width = ' . $width[0] . ';
