@@ -1,87 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="content" method="upgrade">
-    <name>Content - ITPGoogleAdSense</name>
+    <name>PLG_CONTENT_ITPGOOGLEADSENSE</name>
     <author>Todor Iliev</author>
-    <creationDate>January, 2011</creationDate>
     <copyright>Copyright (C) 2010 ITPrism.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>support@itprism.com</authorEmail>
     <authorUrl>http://itprism.com</authorUrl>
     <version>1.3</version>
-    <description><![CDATA[
-	<p><a href="http://itprism.com/free-joomla-extensions/ecommerce-gamification/google-adsense-integration">ITPGoogleAdSense</a> is a plugin which adds a Google AdSense on your web page.</p>
-	<p>Invest in the extension and help for its improvement. You can <a href="http://itprism.com/sponsorship" title="Sponsoring" target="_blank">sponsor the extension via SMS or PayPal</a>.</p>
-    <p><a href="http://itprism.com/" target="_blank">Subscribe for the newsletter</a> to receive information about updates and new ITPrism extensions.</p>
-	<p>Please, <a href="http://extensions.joomla.org/extensions/ads-a-affiliates/google-ads/6869">vote for the extension</a> on Joomla! Extensions Directory</p>]]></description>
+    <creationDate>27 April, 2013</creationDate>
+    <description>PLG_CONTENT_ITPGOOGLEADSENSE_DESC</description>
+	
+	<languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_content_itpgoogleadsense.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_content_itpgoogleadsense.sys.ini</language>
+    </languages> 
+    
     <files>
         <filename plugin="itpgoogleadsense">itpgoogleadsense.php</filename>
 		<filename>index.html</filename>
 		<filename>README.md</filename>
     </files>
+    
+    <help url="PLG_CONTENT_ITPSHARE_HELP_URL"/>
+    
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="position" type="list" default="2" label="Position" description="A position where you want to put AdSense." >
-				   <option value="0">Both</option>
-				   <option value="1">Top</option>
-				   <option value="2">Bottom</option>
+				<field name="position" type="list" default="2" label="PLG_CONTENT_ITPGOOGLEADSENSE_POSITION" description="PLG_CONTENT_ITPGOOGLEADSENSE_POSITION_DESC" >
+				   <option value="0">PLG_CONTENT_ITPGOOGLEADSENSE_BOTH</option>
+				   <option value="1">PLG_CONTENT_ITPGOOGLEADSENSE_TOP</option>
+				   <option value="2">PLG_CONTENT_ITPGOOGLEADSENSE_BOTTOM</option>
 				</field>
 						
-				<field name="publisherId" type="text" default="" size="80" label="Publisher ID" description="Please, enter your Publisher ID provided by Google AdSense. It is an alphanumerical string like pub-123456789876543. If you do not have an ID, register yourself to Google AdSense." />
-                    <field name="slot" type="text" default="" size="80" label="Slot number" description="Enter a slot number that is into the AdSense JavaScript code. It is a numerical string like 54656789." />
-                    <field name="channel" type="text" default="" size="80" label="Channel number" description="Enter a channel number that is part of AdSense JavaScript code." />
+				<field name="publisherId" type="text" default="" size="80" label="PLG_CONTENT_ITPGOOGLEADSENSE_PUBLISHER_ID" description="PLG_CONTENT_ITPGOOGLEADSENSE_PUBLISHER_ID_DESC" />
+                <field name="slot" type="text" default="" size="80" label="PLG_CONTENT_ITPGOOGLEADSENSE_SLOT_NUMBER" description="PLG_CONTENT_ITPGOOGLEADSENSE_SLOT_NUMBER_DESC" />
+                <field name="channel" type="text" default="" size="80" label="PLG_CONTENT_ITPGOOGLEADSENSE_CHANNEL_NUMBER" description="PLG_CONTENT_ITPGOOGLEADSENSE_CHANNEL_NUMBER_DESC" />
 
-				<field name="format" type="list" default="120x240_as" label="AdSense Size" description="Choose the ad format and size that you would like to display on your page.">
-					<option value="468x60_as"> 468 x 60 Banner </option> 
-					<option value="234x60_as"> 234 x 60 Half Banner </option> 
-					
-					<option value=""> --- </option> 
-					<option value="120x600_as"> 120 x 600 Skyscraper </option> 
-					<option value="160x600_as"> 160 x 600 Wide Skyscraper </option> 
-					<option value="120x240_as"> 120 x 240 Vertical Banner </option> 
-					
-					<option value=""> --- </option>
-					<option value="336x280_as"> 336 x 280 Large Rectangle </option>
-					<option value="300x250_as"> 300 x 250 Medium rectangle </option> 
-					<option value="250x250_as"> 250 x 250 Square </option> 
-					<option value="200x200_as"> 200 x 200 Small Square </option>
-					<option value="180x150_as"> 180 x 150 Small Rectangle </option>
-					<option value="125x125_as"> 125 x 125 Button </option>
-					
-					<option value=""> --- </option>         
-					<option value="728x90_as"> 728 x 90 Leaderboard </option>
-					
-					<option value=""> --- </option>
-					<option value="728x15_0ads_al">728 x 15 Adlink 4 links</option>
-					<option value="468x15_0ads_al">468 x 15 Adlink 4 links</option>
-					<option value="120x90_0ads_al">120 x 90 Adlink 4 links</option>
-					<option value="160x90_0ads_al">160 x 90 Adlink 4 links</option>
-					<option value="180x90_0ads_al">180 x 90 Adlink 4 links</option>
-					<option value="200x90_0ads_al">200 x 90 Adlink 4 links</option>
-					
-					<option value=""> --- </option>
-					<option value="728x15_0ads_al_s">728 x 15 Adlink 5 links</option>
-					<option value="468x15_0ads_al_s">468 x 15 Adlink 5 links</option>
-					<option value="120x90_0ads_al_s">120 x 90 Adlink 5 links</option>
-					<option value="160x90_0ads_al_s">160 x 90 Adlink 5 links</option>
-					<option value="180x90_0ads_al_s">180 x 90 Adlink 5 links</option>
-					<option value="200x90_0ads_al_s">200 x 90 Adlink 5 links</option>
-				</field>
-			</fieldset>
+                <field name="format" type="list" default="120x240_as" label="PLG_CONTENT_ITPGOOGLEADSENSE_SIZE" description="PLG_CONTENT_ITPGOOGLEADSENSE_SIZE_DESC">
+                    <option value="468x60_as">PLG_CONTENT_ITPGOOGLEADSENSE_468_60</option> 
+                    <option value="234x60_as">PLG_CONTENT_ITPGOOGLEADSENSE_234_60_HALF_BANNER</option> 
+                    
+                    <option value=""> --- </option> 
+                    <option value="120x600_as">PLG_CONTENT_ITPGOOGLEADSENSE_120_600_SKYSCRAPER</option> 
+                    <option value="300x600_as">PLG_CONTENT_ITPGOOGLEADSENSE_300_600_LARGE_SKYSCRAPER</option> 
+                    <option value="160x600_as">PLG_CONTENT_ITPGOOGLEADSENSE_160_600_WIDE_SKYSCRAPER</option> 
+                    <option value="120x240_as">PLG_CONTENT_ITPGOOGLEADSENSE_120_240_VERTICAL_BANNER</option> 
+                    
+                    <option value=""> --- </option>
+                    <option value="336x280_as">PLG_CONTENT_ITPGOOGLEADSENSE_336_280_LARGE_RECTANGLE</option>
+                    <option value="300x250_as">PLG_CONTENT_ITPGOOGLEADSENSE_300_250_MEDIUM_RECTANGLE</option> 
+                    <option value="250x250_as">PLG_CONTENT_ITPGOOGLEADSENSE_250_250_SQUARE</option> 
+                    <option value="200x200_as">PLG_CONTENT_ITPGOOGLEADSENSE_200_200_SMALL_SQUARE</option>
+                    <option value="180x150_as">PLG_CONTENT_ITPGOOGLEADSENSE_180_150_SMALL_RECTANGLE</option>
+                    <option value="125x125_as">PLG_CONTENT_ITPGOOGLEADSENSE_125_125_BUTTON</option>
+                    
+                    <option value=""> --- </option>         
+                    <option value="728x90_as">PLG_CONTENT_ITPGOOGLEADSENSE_728_90_LEADERBOARD</option>
+                    <option value="970x90_as">PLG_CONTENT_ITPGOOGLEADSENSE_970_90_LARGE_LEADERBOARD</option>
+                    
+                    <option value=""> --- </option>
+                    <option value="728x15_0ads_al">PLG_CONTENT_ITPGOOGLEADSENSE_728_15_ADLINK_4_LINKS</option>
+                    <option value="468x15_0ads_al">PLG_CONTENT_ITPGOOGLEADSENSE_468_15_ADLINK_4_LINKS</option>
+                    <option value="120x90_0ads_al">PLG_CONTENT_ITPGOOGLEADSENSE_120_90_ADLINK_4_LINKS</option>
+                    <option value="160x90_0ads_al">PLG_CONTENT_ITPGOOGLEADSENSE_160_90_ADLINK_4_LINKS</option>
+                    <option value="180x90_0ads_al">PLG_CONTENT_ITPGOOGLEADSENSE_180_90_ADLINK_4_LINKS</option>
+                    <option value="200x90_0ads_al">PLG_CONTENT_ITPGOOGLEADSENSE_200_90_ADLINK_4_LINKS</option>
+                    
+                    <option value=""> --- </option>
+                    <option value="728x15_0ads_al_s">PLG_CONTENT_ITPGOOGLEADSENSE_728_15_ADLINK_5_LINKS</option>
+                    <option value="468x15_0ads_al_s">PLG_CONTENT_ITPGOOGLEADSENSE_468_15_ADLINK_5_LINKS</option>
+                    <option value="120x90_0ads_al_s">PLG_CONTENT_ITPGOOGLEADSENSE_120_90_ADLINK_5_LINKS</option>
+                    <option value="160x90_0ads_al_s">PLG_CONTENT_ITPGOOGLEADSENSE_160_90_ADLINK_5_LINKS</option>
+                    <option value="180x90_0ads_al_s">PLG_CONTENT_ITPGOOGLEADSENSE_180_90_ADLINK_5_LINKS</option>
+                    <option value="200x90_0ads_al_s">PLG_CONTENT_ITPGOOGLEADSENSE_200_90_ADLINK_5_LINKS</option>
+                </field>
+            </fieldset>
 		
+		    <fieldset name="joomla_content_advanced" label="PLG_CONTENT_ITPGOOGLEADSENSE_JOOMLA_CONTENT" description="PLG_CONTENT_ITPGOOGLEADSENSE_JOOMLA_CONTENT_DESC">
+                <field name="showInArticles" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_SHOW_IN_ARTICLE" description="PLG_CONTENT_ITPGOOGLEADSENSE_SHOW_IN_ARTICLE_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                <field name="showInCategories" type="radio" default="0" label="PLG_CONTENT_ITPGOOGLEADSENSE_SHOW_IN_CATEGORIES" description="PLG_CONTENT_ITPGOOGLEADSENSE_SHOW_IN_CATEGORIES_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                
+                <field name="showInFeatured" type="radio" default="0" label="PLG_CONTENT_ITPGOOGLEADSENSE_SHOW_IN_FEATURE" description="PLG_CONTENT_ITPGOOGLEADSENSE_SHOW_IN_FEATURE_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                
+                <field name="excludeArticles" type="text" default="" size="80"
+                    label="PLG_CONTENT_ITPGOOGLEADSENSE_EXCLUDE_ARTICLES"
+                    description="PLG_CONTENT_ITPGOOGLEADSENSE_EXCLUDE_ARTICLES_DESC" />
+                        
+                <field name="excludeCats" type="text" default="" size="80"
+                    label="PLG_CONTENT_ITPGOOGLEADSENSE_EXCLUDE_CATEGORIES"
+                    description="PLG_CONTENT_ITPGOOGLEADSENSE_EXCLUDE_CATEGORIES_DESC" />
+                        
+                <field name="includeArticles" type="text" default="" size="80"
+                    label="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_ARITCLES"
+                    description="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_ARITCLES_DESC" />
+            </fieldset>
+            
+            <fieldset name="k2_advanced" label="PLG_CONTENT_ITPGOOGLEADSENSE_K2_SETTINGS" description="PLG_CONTENT_ITPGOOGLEADSENSE_K2_SETTINGS_DESC">
+            
+                 <field name="k2DisplayInArticles" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_K2_DISPLAY_IN_ARITCLES" description="PLG_CONTENT_ITPGOOGLEADSENSE_K2_DISPLAY_IN_ARITCLES_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                
+                <field name="k2DisplayInItemlist" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_K2_DISPLAY_IN_CATEGORIES" description="PLG_CONTENT_ITPGOOGLEADSENSE_K2_DISPLAY_IN_CATEGORIES_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                
+                <field name="k2_exclude_articles" type="text" default="" size="80"
+                    label="PLG_CONTENT_ITPGOOGLEADSENSE_EXCLUDE_ARTICLES"
+                    description="PLG_CONTENT_ITPGOOGLEADSENSE_EXCLUDE_ARTICLES_DESC" />
+                        
+                <field name="k2_exclude_cats" type="text" default="" size="80"
+                    label="PLG_CONTENT_ITPGOOGLEADSENSE_EXCLUDE_CATEGORIES"
+                    description="PLG_CONTENT_ITPGOOGLEADSENSE_EXCLUDE_CATEGORIES_DESC" />
+                        
+                <field name="k2_include_articles" type="text" default="" size="80"
+                    label="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_ARITCLES"
+                    description="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_ARITCLES_DESC" />
+                    
+            </fieldset>
+            
+            <fieldset name="virtuemart_advanced" label="PLG_CONTENT_ITPGOOGLEADSENSE_VIRTUEMART_SETTINGS" description="PLG_CONTENT_ITPGOOGLEADSENSE_VIRTUEMART_SETTINGS_DESC">
+                <field name="vmDisplayInDetails" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_DETAILS" description="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_DETAILS_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                    
+            </fieldset>
+            
+            <fieldset name="jevents_advanced" label="PLG_CONTENT_ITPGOOGLEADSENSE_JEVENTS_SETTINGS" description="PLG_CONTENT_ITPGOOGLEADSENSE_JEVENTS_SETTINGS_DESC">
+                 <field name="jeDisplayInEvents" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_JEVENT" description="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_JEVENT_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="easyblog_advanced" label="PLG_CONTENT_ITPGOOGLEADSENSE_EASYBLOG_SETTINGS" description="PLG_CONTENT_ITPGOOGLEADSENSE_EASYBLOG_SETTINGS_DESC">
+                <field name="ebDisplayInEntry" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_ENTRY" description="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_ENTRY_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                <field name="ebDisplayInCategories" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_K2_DISPLAY_IN_CATEGORIES" description="PLG_CONTENT_ITPGOOGLEADSENSE_K2_DISPLAY_IN_CATEGORIES_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                <field name="ebDisplayInTags" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_TAGS" description="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_TAGS_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                <field name="ebDisplayInLatest" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_LATEST" description="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_LATEST_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="myblog_advanced" label="PLG_CONTENT_ITPGOOGLEADSENSE_MYBLOG_SETTINGS" description="PLG_CONTENT_ITPGOOGLEADSENSE_MYBLOG_SETTINGS_DESC">
+                <field name="mbDisplay" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_POST" description="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_POST_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="vipportfolio_advanced" label="PLG_CONTENT_ITPGOOGLEADSENSE_VIPPORTFOLIO_SETTINGS" description="PLG_CONTENT_ITPGOOGLEADSENSE_VIPPORTFOLIO_SETTINGS_DESC">
+                <field name="vipportfolio_lineal" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_LINEAL" description="PLG_CONTENT_ITPGOOGLEADSENSE_DISPLAY_IN_LINEAL_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="zoo_advanced" label="PLG_CONTENT_ITPGOOGLEADSENSE_ZOO_SETTINGS" description="PLG_CONTENT_ITPGOOGLEADSENSE_ZOO_SETTINGS_DESC">
+                <field name="zoo_display" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_ZOO_DISPLAY_IN_ARTICLE" description="PLG_CONTENT_ITPGOOGLEADSENSE_ZOO_DISPLAY_IN_ARTICLE_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="joomshopping_advanced" label="PLG_CONTENT_ITPGOOGLEADSENSE_JOOMSHOPPING_SETTINGS" description="PLG_CONTENT_ITPGOOGLEADSENSE_JOOMSHOPPING_SETTINGS_DESC">
+                <field name="joomshopping_display" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_JOOMSHOPPING_DISPLAY_IN_DETAILS" description="PLG_CONTENT_ITPGOOGLEADSENSE_JOOMSHOPPING_DISPLAY_IN_DETAILS_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="hikashop_advanced" label="PLG_CONTENT_ITPGOOGLEADSENSE_HIKASHOP_SETTINGS" description="PLG_CONTENT_ITPGOOGLEADSENSE_HIKASHOP_SETTINGS_DESC">
+                <field name="hikashop_display" type="radio" default="1" label="PLG_CONTENT_ITPGOOGLEADSENSE_HIKASHOP_DISPLAY_IN_DETAILS" description="PLG_CONTENT_ITPGOOGLEADSENSE_HIKASHOP_DISPLAY_IN_DETAILS_DESC" >
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
 			<fieldset name="advanced">
-			     <field name="spacer13" type="spacer" class="text" label="############# JOOMLA CONTENT ( com_content ) SETTINGS #############" />
-                    <field name="showInArticles" type="radio" default="1" label="Show in articles" description="Display buttons in view 'article'." >
-                       <option value="0">JNO</option>
-                       <option value="1">JYES</option>
-                    </field>
-                    
-                    <field name="excludeArticles" type="text" default="" size="80" label="Exclude articles" description="List of excluded articles divided by comma. You must enter the IDs of articles." />
-                    <field name="excludeCats" type="text" default="" size="80" label="Exclude categories" description="List with excluded categories divided by comma. You must enter the IDs of categories." />
-                    <field name="includeArticles" type="text" default="" size="80" label="Include in articles" description="Displays ads in these articles notwithstanding the exclusion settings. You must enter the IDs of articles." />
-                    
-				<field name="blockedIPs" type="textarea" default="" label="Blocked IPs" description="Enter an IP number that you would like to block. Devide the addresses by comma." cols="30" rows="8" />
-				<field name="altMessage" type="textarea" default="" label="Message on blocked IP" description="Enter a message to show when blocked IPs try to load the page."  cols="30" rows="8"/>
+				<field name="blockedIPs" type="textarea" default="" label="PLG_CONTENT_ITPGOOGLEADSENSE_BLOCKED_IPS" description="PLG_CONTENT_ITPGOOGLEADSENSE_BLOCKED_IPS_DESC" cols="30" rows="8" />
+				<field name="altMessage" type="textarea" default="" label="PLG_CONTENT_ITPGOOGLEADSENSE_MESSAGE_BLOCKED_IP" description="PLG_CONTENT_ITPGOOGLEADSENSE_MESSAGE_BLOCKED_IP_DESC"  cols="30" rows="8"/>
 			</fieldset>
 		</fields>
 	</config>
