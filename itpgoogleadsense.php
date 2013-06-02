@@ -1,7 +1,7 @@
 <?php
 /**
- * @package		 ITPrism Plugins
- * @subpackage	 ITPGoogleAdSense
+ * @package		 ITPGoogleAdSense
+ * @subpackage	 Plugins
  * @copyright    Copyright (C) 2010 Todor Iliev <todor@itprism.com>. All rights reserved.
  * @license      http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * ITPGoogleAdSense is free software. This version may have been modified pursuant
