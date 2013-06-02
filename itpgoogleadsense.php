@@ -83,14 +83,31 @@ class plgContentITPGoogleAdSense extends JPlugin {
      */
     private function getContent(&$article, $context){
         
-        $ips = explode(",",$this->params->get('blockedIPs'));
+        $app = JFactory::getApplication();
+        /** @var $app JSite **/
+        
+        // Get blocked IP addresses
+        $ips = explode(",", $this->params->get('blockedIPs'));
         foreach($ips as &$ip) {
             $ip = trim($ip);
         }
         
-        $removeAddress = JArrayHelper::getValue($_SERVER, "REMOTE_ADDR");
-        if(in_array($removeAddress,$ips)) {
+        $remoteAddress = $app->input->server->get("REMOTE_ADDR");
+        if(in_array($remoteAddress, $ips)) {
             return '<div style="clear:both;">' . $this->params->get('altMessage') . '</div>';
+        }
+        
+        // Get custom code
+        $customCode     = $this->params->get('custom_code');
+        
+        if(!empty($customCode)) { // Display the custom code
+        
+            $html  = '<div style="clear:both;">';
+            $html .= $customCode;
+            $html .= '</div>';
+            
+            return $html;
+        
         }
         
         /* Let's show the ad */
