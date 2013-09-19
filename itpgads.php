@@ -1,13 +1,9 @@
 <?php
 /**
- * @package		 ITPGoogleAdSense
+ * @package		 ITPGads
  * @subpackage	 Plugins
- * @copyright    Copyright (C) 2010 Todor Iliev <todor@itprism.com>. All rights reserved.
+ * @copyright    Copyright (C) 2013 Todor Iliev <todor@itprism.com>. All rights reserved.
  * @license      http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * ITPGoogleAdSense is free software. This version may have been modified pursuant
- * to the GNU General Public License, and as distributed it includes or
- * is derivative of works licensed under the GNU General Public License or
- * other free or open source software licenses.
  */
 
 // no direct access
@@ -15,14 +11,15 @@ defined('_JEXEC') or die;
 
 jimport('joomla.plugin.plugin');
 
-class plgContentITPGoogleAdSense extends JPlugin {
+class plgContentITPGads extends JPlugin {
     
     private $currentView    = "";
     private $currentTask    = "";
     private $currentOption  = "";
+    private $currentLayout  = "";
     
     /**
-     * Adds Google AdSense into articles
+     * Generate and include Google AdSense code to the page content.
      *
      * Method is called by the view
      *
@@ -34,29 +31,13 @@ class plgContentITPGoogleAdSense extends JPlugin {
      */
     public function onContentPrepare($context, &$article, &$params, $limitstart){
         
-        if (!$article OR !isset($this->params)) { return; };        
-        
-        $app = JFactory::getApplication();
-        /** @var $app JSite **/
-
-        if($app->isAdmin()) {
+        // Check for correct trigger
+        if(strcmp("on_content_prepare", $this->params->get("trigger_place")) != 0) {
             return;
         }
         
-        $doc     = JFactory::getDocument();
-        /**  @var $doc JDocumentHtml **/
-        
-        // Get request data
-        $this->currentOption  = $app->input->getCmd("option");
-        $this->currentView    = $app->input->getCmd("view");
-        $this->currentTask    = $app->input->getCmd("task");
-        
-        if($this->isRestricted($article, $context, $params)) {
-        	return;
-        }
-        
         // Generate content
-		$content      = $this->getContent($article, $context);
+        $content      = $this->processGenerating($context, $article, $params, $page = 0);
         $position     = $this->params->get('position');
         
         switch($position){
@@ -71,10 +52,90 @@ class plgContentITPGoogleAdSense extends JPlugin {
                 break;
         }
         
-        return true;
+    }
+    
+    
+    /**
+     * Generate and include Google AdSense code before content.
+     *
+     * @param	string	The context of the content being passed to the plugin.
+     * @param	object	The article object.  Note $article->text is also available
+     * @param	object	The article params
+     * @param	int		The 'page' number
+     */
+    public function onContentBeforeDisplay($context, &$article, &$params, $page = 0) {
+    
+        // Check for correct trigger
+        if(strcmp("on_content_before_display", $this->params->get("trigger_place")) != 0) {
+            return "";
+        }
+    
+        return $this->processGenerating($context, $article, $params, $page = 0);
+    }
+    
+    /**
+     * Generate and include Google AdSense code after content.
+     *
+     * @param	string	The context of the content being passed to the plugin.
+     * @param	object	The article object.  Note $article->text is also available
+     * @param	object	The article params
+     * @param	int		The 'page' number
+     */
+    public function onContentAfterDisplay($context, &$article, &$params, $page = 0) {
+    
+        // Check for correct trigger
+        if(strcmp("on_content_after_display", $this->params->get("trigger_place")) != 0) {
+            return "";
+        }
+    
+        return $this->processGenerating($context, $article, $params, $page = 0);
     }
     
 
+    /**
+     * Execute the process of buttons generating.
+     *
+     * @param string    $context
+     * @param object    $article
+     * @param JRegistry $params
+     * @param number    $page
+     * @return NULL|string
+     */
+    private function processGenerating($context, &$article, &$params, $page = 0) {
+    
+        if (!$article OR !isset($this->params)) { return null; };
+    
+        $app = JFactory::getApplication();
+        /** @var $app JSite **/
+    
+        if($app->isAdmin()) {
+            return null;
+        }
+    
+        $doc     = JFactory::getDocument();
+        /**  @var $doc JDocumentHtml **/
+    
+        // Check document type
+        $docType = $doc->getType();
+        if(strcmp("html", $docType) != 0){
+            return null;
+        }
+    
+        // Get request data
+        $this->currentOption  = $app->input->getCmd("option");
+        $this->currentView    = $app->input->getCmd("view");
+        $this->currentTask    = $app->input->getCmd("task");
+        $this->currentLayout  = $app->input->getCmd("layout");
+    
+        if($this->isRestricted($article, $context, $params)) {
+            return null;
+        }
+    
+        // Generate and return content
+        return $this->getContent($article, $context);
+    
+    }
+    
     /**
      * Generate content
      * @param   object      The article object.  Note $article->text is also available
@@ -105,7 +166,7 @@ class plgContentITPGoogleAdSense extends JPlugin {
             $html  = '<div style="clear:both;">';
             $html .= $customCode;
             $html .= '</div>';
-            
+        
             return $html;
         
         }
@@ -136,7 +197,15 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 
     }
     
-    
+    /**
+     * Validate the posibility to be loaded this plugin in some extensions.
+     * 
+     * @param object $article
+     * @param string $context
+     * @param jRegistry $params
+     * 
+     * @return boolean
+     */
     private function isRestricted($article, $context, $params) {
     	
     	$result = false;
@@ -168,10 +237,6 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
                 $result = $this->isJEventsRestricted($article, $context);
                 break;
 
-            case "com_easyblog":
-                $result = $this->isEasyBlogRestricted($article, $context);
-                break;
-                
             case "com_vipportfolio":
                 $result = $this->isVipPortfolioRestricted($article, $context);
                 break;
@@ -188,6 +253,9 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
                 $result = $this->isHikaShopRestricted($article, $context);
                 break; 
                 
+            case "com_vipquotes":
+                $result = $this->isVipQuotesRestricted($article, $context);
+                break;
             default:
                 $result = true;
                 break;   
@@ -206,7 +274,7 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
     private function isContentRestricted(&$article, $context) {
         
         // Check for correct context
-        if(( strpos($context, "com_content") === false ) OR empty($article->id)) {
+        if((false === strpos($context, "com_content")) OR empty($article->id)) {
            return true;
         }
         
@@ -263,11 +331,13 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
         return false;
     }
     
-/**
+    /**
      * 
-     * This method does verification for K2 restrictions
-     * @param jIcalEventRepeat $article
+     * This method does verification for K2 restrictions.
+     * 
+     * @param object $article
      * @param string $context
+     * @param JRegistry $params
      */
     private function isK2Restricted(&$article, $context, $params) {
         
@@ -465,51 +535,6 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
         return false;
     }
     
-    /**
-     * 
-     * It's a method that verify restriction for the component "com_easyblog"
-     * @param object $article
-     * @param string $context
-     */
-	private function isEasyBlogRestricted(&$article, $context) {
-        $allowedViews = array("categories", "entry", "latest", "tags");   
-        // Check for correct context
-        if(strpos($context, "easyblog") === false) {
-           return true;
-        }
-        
-        // Only put buttons in allowed views
-        if(!in_array($this->currentView, $allowedViews)) {
-        	return true;
-        }
-        
-   		// Verify the option for displaying in view "categories"
-        $displayInCategories     = $this->params->get('ebDisplayInCategories', 0);
-        if(!$displayInCategories AND (strcmp("categories", $this->currentView) == 0)){
-            return true;
-        }
-        
-   		// Verify the option for displaying in view "latest"
-        $displayInLatest     = $this->params->get('ebDisplayInLatest', 0);
-        if(!$displayInLatest AND (strcmp("latest", $this->currentView) == 0)){
-            return true;
-        }
-        
-		// Verify the option for displaying in view "entry"
-        $displayInEntry     = $this->params->get('ebDisplayInEntry', 0);
-        if(!$displayInEntry AND (strcmp("entry", $this->currentView) == 0)){
-            return true;
-        }
-        
-	    // Verify the option for displaying in view "tags"
-        $displayInTags     = $this->params->get('ebDisplayInTags', 0);
-        if(!$displayInTags AND (strcmp("tags", $this->currentView) == 0)){
-            return true;
-        }
-        
-        return false;
-    }
-    
 	/**
      * 
      * It's a method that verify restriction for the component "com_joomshopping"
@@ -559,5 +584,36 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
         return false;
     }
     
+    /**
+     * Do verification for Vip Quotes extension. Is it restricted?
+     *
+     * @param ojbect $article
+     * @param string $context
+     */
+    private function isVipQuotesRestricted(&$article, $context) {
+    
+        // Check for correct context
+        if(strpos($context, "com_vipquotes") === false) {
+            return true;
+        }
+    
+        // Display only in view 'quote'
+        $allowedViews = array("author", "quote");
+        if(!in_array($this->currentView, $allowedViews)) {
+            return true;
+        }
+    
+        $displayOnViewQuote     = $this->params->get('vipquotes_display_quote', 0);
+        if(!$displayOnViewQuote){
+            return true;
+        }
+    
+        $displayOnViewAuthor     = $this->params->get('vipquotes_display_author', 0);
+        if(!$displayOnViewAuthor){
+            return true;
+        }
+    
+        return false;
+    }
     
 }

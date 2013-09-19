@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="content" method="upgrade">
+    <name>PLG_CONTENT_ITPGADS</name>
+    <author>Todor Iliev</author>
+    <copyright>Copyright (C) 2010 ITPrism.com. All rights reserved.</copyright>
+    <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+    <authorEmail>support@itprism.com</authorEmail>
+    <authorUrl>http://itprism.com</authorUrl>
+    <version>1.5</version>
+    <creationDate>18 September, 2013</creationDate>
+    <description>PLG_CONTENT_ITPGADS_DESC</description>
+	
+	<languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_content_itpgads.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_content_itpgads.sys.ini</language>
+    </languages> 
+    
+    <files>
+        <filename plugin="itpgads">itpgads.php</filename>
+		<filename>index.html</filename>
+		<filename>README.md</filename>
+    </files>
+    
+    <help url="PLG_CONTENT_ITPGADS_HELP_URL"/>
+    
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+            
+                <field name="trigger_place" type="list" default="on_content_prepare" label="PLG_CONTENT_ITPGADS_METHOD_GENERATIONG" description="PLG_CONTENT_ITPGADS_METHOD_GENERATIONG_DESC" >
+                   <option value="on_content_prepare">onContentPrepare</option>
+                   <option value="on_content_before_display">onContentBeforeDisplay</option>
+                   <option value="on_content_after_display">onContentAfterDisplay</option>
+                </field>
+				<field name="position" type="list" default="2" label="PLG_CONTENT_ITPGADS_POSITION" description="PLG_CONTENT_ITPGADS_POSITION_DESC" >
+				   <option value="0">PLG_CONTENT_ITPGADS_BOTH</option>
+				   <option value="1">PLG_CONTENT_ITPGADS_TOP</option>
+				   <option value="2">PLG_CONTENT_ITPGADS_BOTTOM</option>
+				</field>
+						
+				<field name="publisherId" type="text" default="" size="80" label="PLG_CONTENT_ITPGADS_PUBLISHER_ID" description="PLG_CONTENT_ITPGADS_PUBLISHER_ID_DESC" />
+                <field name="slot" type="text" default="" size="80" label="PLG_CONTENT_ITPGADS_SLOT_NUMBER" description="PLG_CONTENT_ITPGADS_SLOT_NUMBER_DESC" />
+                <field name="channel" type="text" default="" size="80" label="PLG_CONTENT_ITPGADS_CHANNEL_NUMBER" description="PLG_CONTENT_ITPGADS_CHANNEL_NUMBER_DESC" />
+
+                <field name="format" type="list" default="120x240_as" label="PLG_CONTENT_ITPGADS_SIZE" description="PLG_CONTENT_ITPGADS_SIZE_DESC">
+                    <option value="468x60_as">PLG_CONTENT_ITPGADS_468_60</option> 
+                    <option value="234x60_as">PLG_CONTENT_ITPGADS_234_60_HALF_BANNER</option> 
+                    
+                    <option value=""> --- </option> 
+                    <option value="120x600_as">PLG_CONTENT_ITPGADS_120_600_SKYSCRAPER</option> 
+                    <option value="300x600_as">PLG_CONTENT_ITPGADS_300_600_LARGE_SKYSCRAPER</option> 
+                    <option value="160x600_as">PLG_CONTENT_ITPGADS_160_600_WIDE_SKYSCRAPER</option> 
+                    <option value="120x240_as">PLG_CONTENT_ITPGADS_120_240_VERTICAL_BANNER</option> 
+                    
+                    <option value=""> --- </option>
+                    <option value="336x280_as">PLG_CONTENT_ITPGADS_336_280_LARGE_RECTANGLE</option>
+                    <option value="300x250_as">PLG_CONTENT_ITPGADS_300_250_MEDIUM_RECTANGLE</option> 
+                    <option value="250x250_as">PLG_CONTENT_ITPGADS_250_250_SQUARE</option> 
+                    <option value="200x200_as">PLG_CONTENT_ITPGADS_200_200_SMALL_SQUARE</option>
+                    <option value="180x150_as">PLG_CONTENT_ITPGADS_180_150_SMALL_RECTANGLE</option>
+                    <option value="125x125_as">PLG_CONTENT_ITPGADS_125_125_BUTTON</option>
+                    
+                    <option value=""> --- </option>         
+                    <option value="728x90_as">PLG_CONTENT_ITPGADS_728_90_LEADERBOARD</option>
+                    <option value="970x90_as">PLG_CONTENT_ITPGADS_970_90_LARGE_LEADERBOARD</option>
+                    
+                    <option value=""> --- </option>
+                    <option value="728x15_0ads_al">PLG_CONTENT_ITPGADS_728_15_ADLINK_4_LINKS</option>
+                    <option value="468x15_0ads_al">PLG_CONTENT_ITPGADS_468_15_ADLINK_4_LINKS</option>
+                    <option value="120x90_0ads_al">PLG_CONTENT_ITPGADS_120_90_ADLINK_4_LINKS</option>
+                    <option value="160x90_0ads_al">PLG_CONTENT_ITPGADS_160_90_ADLINK_4_LINKS</option>
+                    <option value="180x90_0ads_al">PLG_CONTENT_ITPGADS_180_90_ADLINK_4_LINKS</option>
+                    <option value="200x90_0ads_al">PLG_CONTENT_ITPGADS_200_90_ADLINK_4_LINKS</option>
+                    
+                    <option value=""> --- </option>
+                    <option value="728x15_0ads_al_s">PLG_CONTENT_ITPGADS_728_15_ADLINK_5_LINKS</option>
+                    <option value="468x15_0ads_al_s">PLG_CONTENT_ITPGADS_468_15_ADLINK_5_LINKS</option>
+                    <option value="120x90_0ads_al_s">PLG_CONTENT_ITPGADS_120_90_ADLINK_5_LINKS</option>
+                    <option value="160x90_0ads_al_s">PLG_CONTENT_ITPGADS_160_90_ADLINK_5_LINKS</option>
+                    <option value="180x90_0ads_al_s">PLG_CONTENT_ITPGADS_180_90_ADLINK_5_LINKS</option>
+                    <option value="200x90_0ads_al_s">PLG_CONTENT_ITPGADS_200_90_ADLINK_5_LINKS</option>
+                </field>
+            </fieldset>
+		
+		    <fieldset name="joomla_content_advanced" label="PLG_CONTENT_ITPGADS_JOOMLA_CONTENT" description="PLG_CONTENT_ITPGADS_JOOMLA_CONTENT_DESC">
+                <field name="showInArticles" type="radio" default="1" label="PLG_CONTENT_ITPGADS_SHOW_IN_ARTICLE" description="PLG_CONTENT_ITPGADS_SHOW_IN_ARTICLE_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                <field name="showInCategories" type="radio" default="0" label="PLG_CONTENT_ITPGADS_SHOW_IN_CATEGORIES" description="PLG_CONTENT_ITPGADS_SHOW_IN_CATEGORIES_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                
+                <field name="showInFeatured" type="radio" default="0" label="PLG_CONTENT_ITPGADS_SHOW_IN_FEATURE" description="PLG_CONTENT_ITPGADS_SHOW_IN_FEATURE_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                
+                <field name="excludeArticles" type="text" default="" size="80"
+                    label="PLG_CONTENT_ITPGADS_EXCLUDE_ARTICLES"
+                    description="PLG_CONTENT_ITPGADS_EXCLUDE_ARTICLES_DESC" />
+                        
+                <field name="excludeCats" type="text" default="" size="80"
+                    label="PLG_CONTENT_ITPGADS_EXCLUDE_CATEGORIES"
+                    description="PLG_CONTENT_ITPGADS_EXCLUDE_CATEGORIES_DESC" />
+                        
+                <field name="includeArticles" type="text" default="" size="80"
+                    label="PLG_CONTENT_ITPGADS_DISPLAY_IN_ARITCLES"
+                    description="PLG_CONTENT_ITPGADS_DISPLAY_IN_ARITCLES_DESC" />
+            </fieldset>
+            
+            <fieldset name="k2_advanced" label="PLG_CONTENT_ITPGADS_K2_SETTINGS" description="PLG_CONTENT_ITPGADS_K2_SETTINGS_DESC">
+            
+                 <field name="k2DisplayInArticles" type="radio" default="1" label="PLG_CONTENT_ITPGADS_K2_DISPLAY_IN_ARITCLES" description="PLG_CONTENT_ITPGADS_K2_DISPLAY_IN_ARITCLES_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                
+                <field name="k2DisplayInItemlist" type="radio" default="1" label="PLG_CONTENT_ITPGADS_K2_DISPLAY_IN_CATEGORIES" description="PLG_CONTENT_ITPGADS_K2_DISPLAY_IN_CATEGORIES_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                
+                <field name="k2_exclude_articles" type="text" default="" size="80"
+                    label="PLG_CONTENT_ITPGADS_EXCLUDE_ARTICLES"
+                    description="PLG_CONTENT_ITPGADS_EXCLUDE_ARTICLES_DESC" />
+                        
+                <field name="k2_exclude_cats" type="text" default="" size="80"
+                    label="PLG_CONTENT_ITPGADS_EXCLUDE_CATEGORIES"
+                    description="PLG_CONTENT_ITPGADS_EXCLUDE_CATEGORIES_DESC" />
+                        
+                <field name="k2_include_articles" type="text" default="" size="80"
+                    label="PLG_CONTENT_ITPGADS_DISPLAY_IN_ARITCLES"
+                    description="PLG_CONTENT_ITPGADS_DISPLAY_IN_ARITCLES_DESC" />
+                    
+            </fieldset>
+            
+            <fieldset name="virtuemart_advanced" label="PLG_CONTENT_ITPGADS_VIRTUEMART_SETTINGS" description="PLG_CONTENT_ITPGADS_VIRTUEMART_SETTINGS_DESC">
+                <field name="vmDisplayInDetails" type="radio" default="1" label="PLG_CONTENT_ITPGADS_DISPLAY_IN_DETAILS" description="PLG_CONTENT_ITPGADS_DISPLAY_IN_DETAILS_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                    
+            </fieldset>
+            
+            <fieldset name="jevents_advanced" label="PLG_CONTENT_ITPGADS_JEVENTS_SETTINGS" description="PLG_CONTENT_ITPGADS_JEVENTS_SETTINGS_DESC">
+                 <field name="jeDisplayInEvents" type="radio" default="1" label="PLG_CONTENT_ITPGADS_DISPLAY_IN_JEVENT" description="PLG_CONTENT_ITPGADS_DISPLAY_IN_JEVENT_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="myblog_advanced" label="PLG_CONTENT_ITPGADS_MYBLOG_SETTINGS" description="PLG_CONTENT_ITPGADS_MYBLOG_SETTINGS_DESC">
+                <field name="mbDisplay" type="radio" default="1" label="PLG_CONTENT_ITPGADS_DISPLAY_IN_POST" description="PLG_CONTENT_ITPGADS_DISPLAY_IN_POST_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="vipportfolio_advanced" label="PLG_CONTENT_ITPGADS_VIPPORTFOLIO_SETTINGS" description="PLG_CONTENT_ITPGADS_VIPPORTFOLIO_SETTINGS_DESC">
+                <field name="vipportfolio_lineal" type="radio" default="1" label="PLG_CONTENT_ITPGADS_DISPLAY_IN_LINEAL" description="PLG_CONTENT_ITPGADS_DISPLAY_IN_LINEAL_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="zoo_advanced" label="PLG_CONTENT_ITPGADS_ZOO_SETTINGS" description="PLG_CONTENT_ITPGADS_ZOO_SETTINGS_DESC">
+                <field name="zoo_display" type="radio" default="1" label="PLG_CONTENT_ITPGADS_ZOO_DISPLAY_IN_ARTICLE" description="PLG_CONTENT_ITPGADS_ZOO_DISPLAY_IN_ARTICLE_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="joomshopping_advanced" label="PLG_CONTENT_ITPGADS_JOOMSHOPPING_SETTINGS" description="PLG_CONTENT_ITPGADS_JOOMSHOPPING_SETTINGS_DESC">
+                <field name="joomshopping_display" type="radio" default="1" label="PLG_CONTENT_ITPGADS_JOOMSHOPPING_DISPLAY_IN_DETAILS" description="PLG_CONTENT_ITPGADS_JOOMSHOPPING_DISPLAY_IN_DETAILS_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="hikashop_advanced" label="PLG_CONTENT_ITPGADS_HIKASHOP_SETTINGS" description="PLG_CONTENT_ITPGADS_HIKASHOP_SETTINGS_DESC">
+                <field name="hikashop_display" type="radio" default="1" label="PLG_CONTENT_ITPGADS_HIKASHOP_DISPLAY_IN_DETAILS" description="PLG_CONTENT_ITPGADS_HIKASHOP_DISPLAY_IN_DETAILS_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="vipquotes_advanced" label="PLG_CONTENT_ITPGADS_VIPQUOTES_SETTINGS" description="PLG_CONTENT_ITPGADS_VIPQUOTES_SETTINGS_DESC">
+                <field name="vipquotes_display_quote" type="radio" default="1" label="PLG_CONTENT_ITPGADS_VIPQUOTES_DISPLAY_ON_QUOTE" description="PLG_CONTENT_ITPGADS_VIPQUOTES_DISPLAY_ON_QUOTE_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+                <field name="vipquotes_display_author" type="radio" default="1" label="PLG_CONTENT_ITPGADS_VIPQUOTES_DISPLAY_ON_AUTHOR" description="PLG_CONTENT_ITPGADS_VIPQUOTES_DISPLAY_ON_AUTHOR_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            
+			<fieldset name="advanced">
+				<field name="blockedIPs" type="textarea" default="" label="PLG_CONTENT_ITPGADS_BLOCKED_IPS" description="PLG_CONTENT_ITPGADS_BLOCKED_IPS_DESC" class="span6" rows="5" />
+				<field name="altMessage" type="textarea" default="" label="PLG_CONTENT_ITPGADS_MESSAGE_BLOCKED_IP" description="PLG_CONTENT_ITPGADS_MESSAGE_BLOCKED_IP_DESC"  class="span6"  rows="5"/>
+				<field name="custom_code" type="textarea" default="" label="PLG_CONTENT_ITPGADS_CUSTOM_CODE" description="PLG_CONTENT_ITPGADS_CUSTOM_CODE_DESC" class="span6"  rows="10" filter="raw" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

@@ -1,10 +1,19 @@
-ITPGoogleAdSense Plugin for Joomla!
+ITPGads Plugin for Joomla!
 ==========================
-( Version 1.4 )
+( Version 1.5 )
 --------------------------
+
+ITPGads is a plugin which adds a Google AdSense on your web page.
 
 Changelog
 ---------
+
+v1.5
+---------
+
+* Renamed
+* Added option for selecting an event ( onContentPrepare, onContentBeforeDisplay, onContentAfterDisplay ), where content will be placed. 
+* Removed Easy Blog
 
 v1.4
 ---------
