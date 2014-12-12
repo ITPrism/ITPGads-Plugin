@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.1" type="plugin" group="content" method="upgrade">
+<extension version="3.3" type="plugin" group="content" method="upgrade">
     <name>PLG_CONTENT_ITPGADS</name>
     <author>Todor Iliev</author>
-    <copyright>Copyright (C) 2010 ITPrism.com. All rights reserved.</copyright>
+    <copyright>Copyright (C) 2014 ITPrism.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>support@itprism.com</authorEmail>
     <authorUrl>http://itprism.com</authorUrl>
-    <version>1.5</version>
-    <creationDate>18 September, 2013</creationDate>
-    <description>PLG_CONTENT_ITPGADS_DESC</description>
+    <version>1.6</version>
+    <creationDate>12 December, 2014</creationDate>
+    <description><![CDATA[
+    <p><a href="http://itprism.com/free-joomla-extensions/ecommerce-gamification/google-adsense-integration" target="_blank">ITPGads</a> is a plugin which adds a Google AdSense on your web page.</p>
+    <p>Invest in the extension and help for its improvement. You can <a href="http://itprism.com/sponsorship" target="_blank">sponsor the extension via SMS, PayPal or Bitcoin</a>.</p>
+    <p><a href="http://itprism.com/" target="_blank">Subscribe for the newsletter</a> to receive information about updates and new ITPrism extensions.</p>
+    <p>Please, <a href="http://extensions.joomla.org/extensions/ads-a-affiliates/affiliate-systems/google-ads/6869" target="_blank">vote for the extension</a> on Joomla! Extensions Directory</p>
+    ]]></description>
 	
-	<languages folder="language">
-        <language tag="en-GB">en-GB/en-GB.plg_content_itpgads.ini</language>
-        <language tag="en-GB">en-GB/en-GB.plg_content_itpgads.sys.ini</language>
-    </languages> 
-    
     <files>
         <filename plugin="itpgads">itpgads.php</filename>
-		<filename>index.html</filename>
 		<filename>README.md</filename>
+
+        <folder>language</folder>
     </files>
     
     <help url="PLG_CONTENT_ITPGADS_HELP_URL"/>
@@ -29,6 +30,7 @@
             
                 <field name="trigger_place" type="list" default="on_content_prepare" label="PLG_CONTENT_ITPGADS_METHOD_GENERATIONG" description="PLG_CONTENT_ITPGADS_METHOD_GENERATIONG_DESC" >
                    <option value="on_content_prepare">onContentPrepare</option>
+                   <option value="on_content_prepare_indicator">onContentPrepare {itpgads}</option>
                    <option value="on_content_before_display">onContentBeforeDisplay</option>
                    <option value="on_content_after_display">onContentAfterDisplay</option>
                 </field>
@@ -40,7 +42,6 @@
 						
 				<field name="publisherId" type="text" default="" size="80" label="PLG_CONTENT_ITPGADS_PUBLISHER_ID" description="PLG_CONTENT_ITPGADS_PUBLISHER_ID_DESC" />
                 <field name="slot" type="text" default="" size="80" label="PLG_CONTENT_ITPGADS_SLOT_NUMBER" description="PLG_CONTENT_ITPGADS_SLOT_NUMBER_DESC" />
-                <field name="channel" type="text" default="" size="80" label="PLG_CONTENT_ITPGADS_CHANNEL_NUMBER" description="PLG_CONTENT_ITPGADS_CHANNEL_NUMBER_DESC" />
 
                 <field name="format" type="list" default="120x240_as" label="PLG_CONTENT_ITPGADS_SIZE" description="PLG_CONTENT_ITPGADS_SIZE_DESC">
                     <option value="468x60_as">PLG_CONTENT_ITPGADS_468_60</option> 
@@ -151,13 +152,6 @@
                 </field>
             </fieldset>
             
-            <fieldset name="myblog_advanced" label="PLG_CONTENT_ITPGADS_MYBLOG_SETTINGS" description="PLG_CONTENT_ITPGADS_MYBLOG_SETTINGS_DESC">
-                <field name="mbDisplay" type="radio" default="1" label="PLG_CONTENT_ITPGADS_DISPLAY_IN_POST" description="PLG_CONTENT_ITPGADS_DISPLAY_IN_POST_DESC" class="btn-group">
-                   <option value="0">JNO</option>
-                   <option value="1">JYES</option>
-                </field>
-            </fieldset>
-            
             <fieldset name="vipportfolio_advanced" label="PLG_CONTENT_ITPGADS_VIPPORTFOLIO_SETTINGS" description="PLG_CONTENT_ITPGADS_VIPPORTFOLIO_SETTINGS_DESC">
                 <field name="vipportfolio_lineal" type="radio" default="1" label="PLG_CONTENT_ITPGADS_DISPLAY_IN_LINEAL" description="PLG_CONTENT_ITPGADS_DISPLAY_IN_LINEAL_DESC" class="btn-group">
                    <option value="0">JNO</option>
@@ -198,6 +192,10 @@
             </fieldset>
             
 			<fieldset name="advanced">
+                <field name="ad_type" type="list" default="1" label="PLG_CONTENT_ITPGADS_AD_TYPE" description="PLG_CONTENT_ITPGADS_AD_TYPE_DESC">
+                    <option value="0">PLG_CONTENT_ITPGADS_SYNCHRONOUS</option>
+                    <option value="1">PLG_CONTENT_ITPGADS_ASYNCHRONOUS</option>
+                </field>
 				<field name="blockedIPs" type="textarea" default="" label="PLG_CONTENT_ITPGADS_BLOCKED_IPS" description="PLG_CONTENT_ITPGADS_BLOCKED_IPS_DESC" class="span6" rows="5" />
 				<field name="altMessage" type="textarea" default="" label="PLG_CONTENT_ITPGADS_MESSAGE_BLOCKED_IP" description="PLG_CONTENT_ITPGADS_MESSAGE_BLOCKED_IP_DESC"  class="span6"  rows="5"/>
 				<field name="custom_code" type="textarea" default="" label="PLG_CONTENT_ITPGADS_CUSTOM_CODE" description="PLG_CONTENT_ITPGADS_CUSTOM_CODE_DESC" class="span6"  rows="10" filter="raw" />
