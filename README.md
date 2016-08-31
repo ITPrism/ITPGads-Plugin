@@ -1,6 +1,6 @@
 ITPGads Plugin for Joomla!
 ==========================
-( Version 1.6 )
+( Version 1.7 )
 --------------------------
 
 ITPGads is a plugin which adds a Google AdSense on your web page.
@@ -15,6 +15,10 @@ You can [download ITP Gads package] (http://itprism.com/free-joomla-extensions/e
 
 Changelog
 ---------
+
+###v1.7
+* Improved code quality.
+* Removed support for Vip Portfolio.
 
 ###v1.6
 * Added option "Ad Type". Now, it is possible to choose between synchronous or asynchronous ad types.

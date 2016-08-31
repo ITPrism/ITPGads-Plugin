@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.3" type="plugin" group="content" method="upgrade">
+<extension version="3.6" type="plugin" group="content" method="upgrade">
     <name>PLG_CONTENT_ITPGADS</name>
     <author>Todor Iliev</author>
-    <copyright>Copyright (C) 2014 ITPrism.com. All rights reserved.</copyright>
-    <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+    <copyright>Copyright (C) 2016 ITPrism.com. All rights reserved.</copyright>
+    <license>http://www.gnu.org/copyleft/gpl.html GNU/GPLv3</license>
     <authorEmail>support@itprism.com</authorEmail>
     <authorUrl>http://itprism.com</authorUrl>
-    <version>1.6</version>
-    <creationDate>12 December, 2014</creationDate>
+    <version>1.7</version>
+    <creationDate>31 August, 2016</creationDate>
     <description><![CDATA[
     <p><a href="http://itprism.com/free-joomla-extensions/ecommerce-gamification/google-adsense-integration" target="_blank">ITPGads</a> is a plugin which adds a Google AdSense on your web page.</p>
     <p>Invest in the extension and help for its improvement. You can <a href="http://itprism.com/sponsorship" target="_blank">sponsor the extension via SMS, PayPal or Bitcoin</a>.</p>
@@ -44,8 +44,8 @@
                 <field name="slot" type="text" default="" size="80" label="PLG_CONTENT_ITPGADS_SLOT_NUMBER" description="PLG_CONTENT_ITPGADS_SLOT_NUMBER_DESC" />
 
                 <field name="format" type="list" default="120x240_as" label="PLG_CONTENT_ITPGADS_SIZE" description="PLG_CONTENT_ITPGADS_SIZE_DESC">
-                    <option value="468x60_as">PLG_CONTENT_ITPGADS_468_60</option> 
-                    <option value="234x60_as">PLG_CONTENT_ITPGADS_234_60_HALF_BANNER</option> 
+                    <option value="468x60_as">PLG_CONTENT_ITPGADS_468_60</option>
+                    <option value="234x60_as">PLG_CONTENT_ITPGADS_234_60_HALF_BANNER</option>
                     
                     <option value=""> --- </option> 
                     <option value="120x600_as">PLG_CONTENT_ITPGADS_120_600_SKYSCRAPER</option> 
@@ -147,13 +147,6 @@
             
             <fieldset name="jevents_advanced" label="PLG_CONTENT_ITPGADS_JEVENTS_SETTINGS" description="PLG_CONTENT_ITPGADS_JEVENTS_SETTINGS_DESC">
                  <field name="jeDisplayInEvents" type="radio" default="1" label="PLG_CONTENT_ITPGADS_DISPLAY_IN_JEVENT" description="PLG_CONTENT_ITPGADS_DISPLAY_IN_JEVENT_DESC" class="btn-group">
-                   <option value="0">JNO</option>
-                   <option value="1">JYES</option>
-                </field>
-            </fieldset>
-            
-            <fieldset name="vipportfolio_advanced" label="PLG_CONTENT_ITPGADS_VIPPORTFOLIO_SETTINGS" description="PLG_CONTENT_ITPGADS_VIPPORTFOLIO_SETTINGS_DESC">
-                <field name="vipportfolio_lineal" type="radio" default="1" label="PLG_CONTENT_ITPGADS_DISPLAY_IN_LINEAL" description="PLG_CONTENT_ITPGADS_DISPLAY_IN_LINEAL_DESC" class="btn-group">
                    <option value="0">JNO</option>
                    <option value="1">JYES</option>
                 </field>
